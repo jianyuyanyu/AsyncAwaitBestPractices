@@ -61,6 +61,14 @@ Available on NuGet: https://www.nuget.org/packages/AsyncAwaitBestPractices/
 
 ## Why Do I Need This?
 
+### Courses
+
+Join me in my [DomeTrain](https://dometrain.com) course where we'll spend nearly 4 hours together learning everything you need to know to master asynchronous programming using async await in C# and .NET
+
+[<img width="750" alt="Screenshot 2025-02-24 at 10 14 11 AM" src="https://github.com/user-attachments/assets/41e3a803-7a8b-4979-8948-71773e3db2b6" />](https://dometrain.com/course/from-zero-to-hero-asynchronous-programming-in-csharp/) [<img width="250" alt="Screenshot 2025-02-24 at 10 14 15 AM" src="https://github.com/user-attachments/assets/e3ffb431-23fe-4e50-9d33-679f5af3725d" />](https://dometrain.com/course/from-zero-to-hero-asynchronous-programming-in-csharp/?srsltid=AfmBOor-HQ1ZO6WzeTya15Cp1K_iBxnrWxmqVRhI_gbzjbbJWt1_c_nI)
+
+
+
 ### Podcasts
 
 [No Dogma Podcast](https://nodogmapodcast.bryanhogan.net), Hosted by [Bryan Hogan](https://twitter.com/bryanjhogan)
