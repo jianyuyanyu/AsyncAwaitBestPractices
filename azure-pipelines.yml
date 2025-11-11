@@ -2,15 +2,15 @@ variables:
   DOTNET_CLI_TELEMETRY_OPTOUT: true
   CurrentSemanticVersionBase: '99.0.0'
   PreviewNumber: $[counter(variables['CurrentSemanticVersionBase'], 1001)]
-  NET_VERSION: '9.0.x'
+  NET_VERSION: '10.0.x'
   CurrentSemanticVersion: '$(CurrentSemanticVersionBase)-preview$(PreviewNumber)'
   NugetPackageVersion: '$(CurrentSemanticVersion)'
-  PathToSolution: 'AsyncAwaitBestPractices.sln'
+  PathToSolution: 'AsyncAwaitBestPractices.slnx'
   PathToSampleAppCsproj: 'sample/HackerNews.csproj'
   PathToUnitTestsCsproj: 'src/AsyncAwaitBestPractices.UnitTests/AsyncAwaitBestPractices.UnitTests.csproj'
   PathToAsyncAwaitBestPracticesCsproj: 'src/AsyncAwaitBestPractices/AsyncAwaitBestPractices.csproj'
   PathToAsyncAwaitBestPracticesMVVMCsproj: 'src/AsyncAwaitBestPractices.MVVM/AsyncAwaitBestPractices.MVVM.csproj'
-  Xcode_Version: '26.0.1'
+  Xcode_Version: '26.1'
 
 trigger:
   branches:
@@ -142,6 +142,12 @@ jobs:
 
       - task: UseDotNet@2
         displayName: 'Use .Net SDK  9.0.x'
+        inputs:
+          version: '9.0.x'
+          packageType: 'sdk'
+
+      - task: UseDotNet@2
+        displayName: 'Use Latest .Net SDK, $(NET_VERSION)'
         inputs:
           version: '$(NET_VERSION)'
           packageType: 'sdk'
