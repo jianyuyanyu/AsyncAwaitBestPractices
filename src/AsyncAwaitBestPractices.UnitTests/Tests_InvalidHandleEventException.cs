@@ -32,7 +32,7 @@ class Tests_InvalidHandleEventException : BaseTest
 		var targetParameterCountException = new TargetParameterCountException("Parameter count mismatch");
 
 		//Act & Assert
-		Assert.DoesNotThrow(() => new InvalidHandleEventException(null!, targetParameterCountException));
+		Assert.Throws<ArgumentNullException>(() => new InvalidHandleEventException(null!, targetParameterCountException));
 	}
 
 	[Test]
@@ -42,7 +42,7 @@ class Tests_InvalidHandleEventException : BaseTest
 		const string message = "Test exception message";
 
 		//Act & Assert
-		Assert.DoesNotThrow(() => new InvalidHandleEventException(message, null!));
+		Assert.Throws<ArgumentNullException>(() => new InvalidHandleEventException(message, null!));
 	}
 
 	[Test]

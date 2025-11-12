@@ -90,4 +90,39 @@ class Tests_InvalidCommandParameterException: BaseTest
 		//Assert
 		Assert.That(exception, Is.InstanceOf<Exception>());
 	}
+
+	[Test]
+	public void InvalidCommandParameterException_NullExpectedType_ThrowsArgumentNullException()
+	{
+		// Assert
+		Assert.Throws<ArgumentNullException>(() => new InvalidCommandParameterException(null!));
+	}
+	
+	[Test]
+	public void InvalidCommandParameterException_NullActualType_ThrowsArgumentNullException()
+	{
+		// Assert
+		Assert.Throws<ArgumentNullException>(() => new InvalidCommandParameterException(typeof(string), (Type)null!));
+	}
+	
+	[Test]
+	public void InvalidCommandParameterException_NullInnerException_ThrowsArgumentNullException()
+	{
+		// Assert
+		Assert.Throws<ArgumentNullException>(() => new InvalidCommandParameterException(typeof(string), (Exception)null!));
+	}
+	
+	[Test]
+	public void InvalidCommandParameterException_NullExpectedTypeAndNullInnerException_ThrowsArgumentNullException()
+	{
+		// Assert
+		Assert.Throws<ArgumentNullException>(() => new InvalidCommandParameterException(null!, (Exception)null!));
+	}
+	
+	[Test]
+	public void InvalidCommandParameterException_NullExpectedTypeAndNullActualType_ThrowsArgumentNullException()
+	{
+		// Assert
+		Assert.Throws<ArgumentNullException>(() => new InvalidCommandParameterException(null!, (Exception)null!));
+	}
 }
