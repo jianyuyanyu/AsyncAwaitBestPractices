@@ -1,19 +1,18 @@
-﻿using System.Collections.Frozen;
+using System.Collections.Frozen;
 using System.Diagnostics;
-using AsyncAwaitBestPractices;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 namespace HackerNews;
 
-partial class NewsViewModel_BadAsyncAwaitPractices : BaseViewModel
+partial class NewsViewModel : BaseViewModel
 {
-	readonly HackerNewsAPIService _hackerNewsAPIService;
+	readonly HackerNewsAPIService _hackerNewsApiService;
 	readonly AsyncAwaitBestPractices.WeakEventManager _pullToRefreshEventManager = new();
 
-	public NewsViewModel_BadAsyncAwaitPractices(IDispatcher dispatcher, HackerNewsAPIService hackerNewsAPIService) : base(dispatcher)
+	public NewsViewModel(IDispatcher dispatcher, HackerNewsAPIService hackerNewsApiService) : base(dispatcher)
 	{
-		_hackerNewsAPIService = hackerNewsAPIService;
+		_hackerNewsApiService = hackerNewsApiService;
 
 		//ToDo Refactor
 		Refresh(CancellationToken.None);
@@ -82,18 +81,18 @@ partial class NewsViewModel_BadAsyncAwaitPractices : BaseViewModel
 	//ToDo Refactor
 	async Task<StoryModel> GetStory(long storyId, CancellationToken token)
 	{
-		return await _hackerNewsAPIService.GetStory(storyId, token);
+		return await _hackerNewsApiService.GetStory(storyId, token);
 	}
 
 	//ToDo Refactor
-	async Task<FrozenSet<long>> GetTopStoryIDs(CancellationToken token)
+	async Task<IReadOnlyList<long>> GetTopStoryIDs(CancellationToken token)
 	{
 		if (IsDataRecent(TimeSpan.FromHours(1)))
-			return TopStoryCollection.Select(x => x.Id).ToFrozenSet();
+			return TopStoryCollection.Select(x => x.Id).ToList();
 
 		try
 		{
-			return await _hackerNewsAPIService.GetTopStoryIDs(token);
+			return await _hackerNewsApiService.GetTopStoryIDs(token);
 		}
 		catch (Exception e)
 		{
@@ -102,7 +101,8 @@ partial class NewsViewModel_BadAsyncAwaitPractices : BaseViewModel
 		}
 	}
 
-	bool IsDataRecent(TimeSpan timeSpan) => (DateTimeOffset.UtcNow - TopStoryCollection.Max(x => x.CreatedAt_DateTimeOffset)) > timeSpan;
+	bool IsDataRecent(TimeSpan timeSpan) => TopStoryCollection.Any() 
+	                                        && (DateTimeOffset.UtcNow - TopStoryCollection.Max(x => x.CreatedAt)) > timeSpan;
 
 	void OnPullToRefreshFailed(string message) => _pullToRefreshEventManager.RaiseEvent(this, message, nameof(PullToRefreshFailed));
 }
