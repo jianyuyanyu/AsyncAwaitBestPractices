@@ -61,13 +61,13 @@ Available on NuGet: https://www.nuget.org/packages/AsyncAwaitBestPractices/
 
 ## Why Do I Need This?
 
-### Courses
+### Online Courses
 
 Join me in these [DomeTrain](https://dometrain.com) courses where we'll learn everything you need to know to master asynchronous programming using async await in C# and .NET
 
-[<img width="1191" height="337" alt="Asynchronous Programming in C#" src="https://github.com/user-attachments/assets/a5e79123-cd0b-4d32-9f49-8b5bb269530f" />](https://dometrain.com/course/from-zero-to-hero-asynchronous-programming-in-csharp/) 
+[<img width="659" height="440" alt="Asynchronous Programming in C#" src="https://github.com/user-attachments/assets/64cd8a04-fce9-46f0-8d40-25f994c7ec7a" />](https://dometrain.com/course/from-zero-to-hero-asynchronous-programming-in-csharp/) 
 
-[<img width="1198" height="339" alt="Parallel Programming in C#" src="https://github.com/user-attachments/assets/a8d0623b-8943-4bc4-829f-5d61e551178a" />](https://dometrain.com/course/from-zero-to-hero-parallel-programming-in-csharp/)
+[<img width="640" height="435" alt="Parallel Programming in C#" src="https://github.com/user-attachments/assets/e6b579b3-d77f-40d1-86a1-3431901c22ee" />](https://dometrain.com/course/from-zero-to-hero-parallel-programming-in-csharp/)
 
 ### Podcasts
 
