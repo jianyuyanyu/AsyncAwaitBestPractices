@@ -6,7 +6,7 @@ namespace HackerNews;
 
 partial class NewsViewModel(IDispatcher dispatcher, HackerNewsAPIService hackerNewsAPIService) : BaseViewModel(dispatcher)
 {
-	readonly HackerNewsAPIService _hackerNewsAPIService = hackerNewsAPIService;
+	readonly HackerNewsAPIService _hackerNewsApiService = hackerNewsAPIService;
 	readonly WeakEventManager _pullToRefreshEventManager = new();
 
 	public event EventHandler<string> PullToRefreshFailed
@@ -48,9 +48,9 @@ partial class NewsViewModel(IDispatcher dispatcher, HackerNewsAPIService hackerN
 	{
 		ArgumentOutOfRangeException.ThrowIfNegativeOrZero(storyCount);
 
-		var topStoryIds = await _hackerNewsAPIService.GetTopStoryIDs(token).ConfigureAwait(false);
+		var topStoryIds = await _hackerNewsApiService.GetTopStoryIDs(token).ConfigureAwait(false);
 
-		var getTopStoryTaskList = topStoryIds.Select(id => _hackerNewsAPIService.GetStory(id, token)).ToList();
+		var getTopStoryTaskList = topStoryIds.Select(id => _hackerNewsApiService.GetStory(id, token)).ToList();
 
 		await foreach (var topStoryTask in getTopStoryTaskList.ToAsyncEnumerable().WithCancellation(token).ConfigureAwait(false))
 		{

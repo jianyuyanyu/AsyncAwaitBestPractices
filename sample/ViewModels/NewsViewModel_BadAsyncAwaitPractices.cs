@@ -1,4 +1,3 @@
-using System.Collections.Frozen;
 using System.Diagnostics;
 using AsyncAwaitBestPractices;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -6,12 +5,12 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace HackerNews;
 
-partial class NewsViewModel : BaseViewModel
+partial class NewsViewModel_Bad : BaseViewModel
 {
 	readonly HackerNewsAPIService _hackerNewsApiService;
 	readonly AsyncAwaitBestPractices.WeakEventManager _pullToRefreshEventManager = new();
 
-	public NewsViewModel(IDispatcher dispatcher, HackerNewsAPIService hackerNewsApiService) : base(dispatcher)
+	public NewsViewModel_Bad(IDispatcher dispatcher, HackerNewsAPIService hackerNewsApiService) : base(dispatcher)
 	{
 		_hackerNewsApiService = hackerNewsApiService;
 
@@ -61,7 +60,7 @@ partial class NewsViewModel : BaseViewModel
 	}
 
 	// ToDo Refactor
-	async Task<FrozenSet<StoryModel>> GetTopStories(CancellationToken token, int storyCount = int.MaxValue)
+	async Task<IReadOnlyList<StoryModel>> GetTopStories(CancellationToken token, int storyCount = int.MaxValue)
 	{
 		List<StoryModel> topStoryList = [];
 
@@ -76,7 +75,7 @@ partial class NewsViewModel : BaseViewModel
 				break;
 		}
 
-		return topStoryList.OrderByDescending(x => x.Score).ToFrozenSet();
+		return topStoryList.OrderByDescending(x => x.Score).ToList();
 	}
 
 	//ToDo Refactor
@@ -103,7 +102,7 @@ partial class NewsViewModel : BaseViewModel
 	}
 
 	bool IsDataRecent(TimeSpan timeSpan) => TopStoryCollection.Any() 
-	                                        && (DateTimeOffset.UtcNow - TopStoryCollection.Max(x => x.CreatedAt)) > timeSpan;
+	                                        && (DateTimeOffset.UtcNow - TopStoryCollection.Max(x => x.CreatedAt_DateTimeOffset)) > timeSpan;
 
 	void OnPullToRefreshFailed(string message) => _pullToRefreshEventManager.RaiseEvent(this, message, nameof(PullToRefreshFailed));
 }
