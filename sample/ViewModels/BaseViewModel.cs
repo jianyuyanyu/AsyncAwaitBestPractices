@@ -16,7 +16,7 @@ abstract partial class BaseViewModel : ObservableObject
 
 	protected IDispatcher Dispatcher { get; }
 
-	protected static void InsertIntoSortedCollection<T>(ObservableCollection<T> collection, Comparison<T> comparison, T modelToInsert)
+	protected static void InsertIntoSortedCollection<T>(in ObservableCollection<T> collection, in Comparison<T> comparison, in T modelToInsert)
 	{
 		if (collection.Count is 0)
 		{
