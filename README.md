@@ -77,11 +77,11 @@ Join me in these [DomeTrain](https://dometrain.com) courses where we'll learn ev
 
 ### Video
 
-**NDC Melbourne 2025**
+**NDC London 2026**
 
-[Correcting Common Async Await Mistakes in .NET 9](https://www.youtube.com/watch?v=6frfLI3HqKI)
+[Correcting Common Async Await Mistakes in .NET 10](https://www.youtube.com/watch?v=J3KHsfhrmsA)
 
-[![](https://github.com/user-attachments/assets/849ef8db-354b-4223-9dc9-09263671f6e3)](https://www.youtube.com/watch?v=6frfLI3HqKI)
+[![](https://github.com/user-attachments/assets/d0abfbc4-0f04-4ef2-94c1-10866a6168df)](https://www.youtube.com/watch?v=J3KHsfhrmsA)
 
 
 ### Explanation
