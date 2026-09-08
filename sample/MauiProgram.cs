@@ -16,6 +16,10 @@ public static class MauiProgram
 								.UseMauiCommunityToolkit()
 								.UseMauiCommunityToolkitMarkup();
 
+#if IOS || MACCATALYST
+		builder.ConfigureMauiHandlers(static handlers => handlers.AddHandler<Shell, LargeTitleShellRenderer>());
+#endif
+
 		// App
 		builder.Services.AddSingleton<App>();
 		builder.Services.AddSingleton<AppShell>();
