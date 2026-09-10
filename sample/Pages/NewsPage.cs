@@ -25,6 +25,7 @@ partial class NewsPage : BaseContentPage<NewsViewModel>
 				BackgroundColor = Color.FromArgb("F6F6EF"),
 				SelectionMode = SelectionMode.Single,
 				ItemTemplate = new StoryDataTemplate(),
+				ItemsUpdatingScrollMode = ItemsUpdatingScrollMode.KeepScrollOffset,
 
 			}.Bind(ItemsView.ItemsSourceProperty,
 					getter: static (NewsViewModel vm) => vm.TopStoryCollection)
