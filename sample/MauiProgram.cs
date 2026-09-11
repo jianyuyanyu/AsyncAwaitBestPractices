@@ -18,6 +18,7 @@ public static class MauiProgram
 
 #if IOS || MACCATALYST
 		builder.ConfigureMauiHandlers(static handlers => handlers.AddHandler<Shell, LargeTitleShellRenderer>());
+		Microsoft.Maui.Handlers.RefreshViewHandler.Mapper.KeepRefreshControlOutOfLargeTitleNavigationBar();
 #endif
 
 		// App

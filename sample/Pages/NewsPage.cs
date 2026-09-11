@@ -46,8 +46,20 @@ partial class NewsPage : BaseContentPage<NewsViewModel>
 		if (Content is RefreshView { Content: CollectionView collectionView } refreshView
 		    && collectionView.ItemsSource.IsNullOrEmpty())
 		{
-			refreshView.IsRefreshing = true;
+			if (refreshView.IsLoaded)
+				refreshView.IsRefreshing = true;
+			else
+				refreshView.Loaded += HandleRefreshViewLoaded;
 		}
+	}
+
+	static void HandleRefreshViewLoaded(object? sender, EventArgs e)
+	{
+		ArgumentNullException.ThrowIfNull(sender);
+
+		var refreshView = (RefreshView)sender;
+		refreshView.Loaded -= HandleRefreshViewLoaded;
+		refreshView.IsRefreshing = true;
 	}
 
 	async void HandleSelectionChanged(object? sender, SelectionChangedEventArgs e)
